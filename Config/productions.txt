@@ -2,26 +2,14 @@
 # When you add one then productions.js will automatically add it after saving
 # Format: Title, Company, Time, Thumbnail URL, Description 
 ---
-Role
-Company
-Date (i.e 2020-present or 2016-2023)
-https://productionimage.jpg 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
+Animator/Team lead
+Auckland University of Technology
+2024
+https://cdn.discordapp.com/attachments/770055361938980885/1255387832382525491/image.png?ex=667cf287&is=667ba107&hm=fb4cedeb736b291e1cb46553cbb62971951ab21f3f062036bf05b7d7a18985d0&
+This project was an Animation Summative Assessment for university, the assesment included modeling and sculpting a character from scratch, re-topologising, rigging, and texturing said character and then animating the character in an environemnt that was also created from scratch. this assesment also had us use teamskills to communicate and animate as a team with other members of a group.
 ---
-Role
-Company
-Date (i.e 2020-present or 2016-2023)
-https://productionimage.jpg 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
----
-Role
-Company
-Date (i.e 2020-present or 2016-2023)
-https://productionimage.jpg 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
----
-Role
-Company
-Date (i.e 2020-present or 2016-2023)
-https://productionimage.jpg 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
+Animator
+Auckland University of Technology
+2023
+https://cdn.discordapp.com/attachments/770055361938980885/1255389160051834972/image.png?ex=667cf3c3&is=667ba243&hm=c28e085c7f254d8df5f68182e469d41c85d7813142a277df9f5c8052a5742c6a&
+An animation assesment that included designing and creating a character robot from scratch, designing and creating a suitable environment and then animating the robot in the environment.

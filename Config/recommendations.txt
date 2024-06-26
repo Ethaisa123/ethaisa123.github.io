@@ -1,23 +1,5 @@
-Name
-https://profilepic.png
-Role @ Company
-Month/Day/Year
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
----
-Name
-https://profilepic.png
-Role @ Company
-Month/Day/Year
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
----
-Name
-https://profilepic.png
-Role @ Company
-Month/Day/Year
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
----
-Name
-https://profilepic.png
-Role @ Company
-Month/Day/Year
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales justo vitae lacinia ornare. Pellentesque commodo mollis velit, finibus malesuada elit bibendum ut. Mauris sit amet nisi ante. Ut commodo auctor lorem id elementum. Ut at arcu congue, dictum est a, egestas neque. Aenean ipsum ipsum, elementum sit amet vehicula eu, congue sit amet risus. Aliquam a sem ac eros feugiat blandit vestibulum non diam.
+Emily Ramsay
+https://cdn.discordapp.com/attachments/770055361938980885/1255386495091736648/8_orgid_7ae2bd66-59b3-4ab9-8153-dc5ff216acc5.jpg?ex=667cf148&is=667b9fc8&hm=b6b02018ce457e79136f97edb4b413a44725e64c75be7bd900b9eb611bcc5ffb&
+Lecturer @ AUT
+6/26/2024
+Ethan is an excellent animatior with a passion for what he does, He has good skills in lighting and modeling and is a great person to work with

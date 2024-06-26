@@ -1,10 +1,9 @@
 Blender
-3ds Max
+Maya
+Adobe After effects
+Unreal
 Unity
 Zbrush
 Adobe Photoshop
-Topogun
 Substance 3d Painter
-Marvelous Designer
-Maya
-Marmoset Toolbag
+Krita
