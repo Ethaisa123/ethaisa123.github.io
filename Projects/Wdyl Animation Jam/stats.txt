@@ -2,3 +2,12 @@ Triangles:
 258,889
 Materials: 
 6
+Texture Size: 
+
+Texel Density: 
+
+Workflow: 
+
+Target Engine: 
+
+Collaborators:
