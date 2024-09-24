@@ -1,9 +1,9 @@
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Eye_wipe.mp4
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Eye_wipe.mp4
 
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/eye_gif.gif
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/eye_gif.gif
 
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/animation.mp4
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/animation.mp4
 
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animationjam_04_before.png // https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animationjam_04_after.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animationjam_04_before.png // https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animationjam_04_after.png
 
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animation_jam.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animation_jam.png
