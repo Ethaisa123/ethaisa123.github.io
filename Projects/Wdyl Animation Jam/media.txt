@@ -1,12 +1,14 @@
-https://drive.google.com/file/d/1OpNRqR3NT3EmMzdsMDX5XxZk_3WaLOz9/preview
+https://youtu.be/zB65EEKTdI4
 This is the finished animation, It was mainly done in blender with its inbuild motion tracking.
 
-https://drive.google.com/file/d/1JESeOvbvnxTHC_cCU6F4ovuyJvRzhyFg/preview
+https://drive.google.com/thumbnail?id=1JESeOvbvnxTHC_cCU6F4ovuyJvRzhyFg&sz=w1000
 This is a test gif I did to try and find the motion and style of animation I wanted to go with, I ended up going for a more smooth and stylised animation type as I thought it fitted with this sort of goofy character.
 
-https://drive.google.com/file/d/1IietQTdKzI8R83ClTFg9L2hbPpvwpQAC/preview
+https://youtu.be/36Ql8Qx-bko
 This is a video on how the rig for the character works, I tried to keep it quite simple becuase I am new to blender rigging and I wanted to learn how rigging actualy works in blender by using constraints and bones rather than an autorigger.
 
-https://drive.google.com/file/d/1JELcua3N9-5VwCiqFe4BjwIcYUnhmhCA/preview // https://drive.google.com/file/d/1JEMFcRpfAl6X7zvESQBouX6ct9nzOmPy/preview
+https://drive.google.com/thumbnail?id=1JELcua3N9-5VwCiqFe4BjwIcYUnhmhCA&sz=w1000
+ // https://drive.google.com/thumbnail?id=1JEMFcRpfAl6X7zvESQBouX6ct9nzOmPy&sz=w1000
 
-https://drive.google.com/file/d/1IswHPHJxB0FAlt46WlstxsB-S6s75tdo/preview
+https://drive.google.com/thumbnail?id=1Ibdk9aVif-FIxpuudjz2Ng9nzYHpYAt9&sz=w1000
+
