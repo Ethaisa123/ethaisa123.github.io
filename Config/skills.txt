@@ -1,0 +1,8 @@
+Animating
+3D Modelling
+Sculpting
+Texturing
+UV-Unwrapping
+Retopology
+Hand-painted Texturing
+Lighting
