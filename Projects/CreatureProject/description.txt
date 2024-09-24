@@ -1,0 +1,9 @@
+CreatureProject
+---
+This project was university where we went through the whole concept to final animation pipeline in a group setting, I was tasked with sculpting, Retopo, Rigging, environemts, rendering and animating scenes 2-3.
+---
+Maya, zbrush, substance painter
+---
+https://drive.google.com/thumbnail?id=1-f75hIBrUToVVGPkisCkdr5vG7CUvIwU&sz=w1000
+---
+Creature.html
