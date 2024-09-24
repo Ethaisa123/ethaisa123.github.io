@@ -1,13 +1,4 @@
 Triangles: 
-
+258,889
 Materials: 
-
-Texture Size: 
-
-Texel Density: 
-
-Workflow: 
-
-Target Engine: 
-
-Collaborators:
+6

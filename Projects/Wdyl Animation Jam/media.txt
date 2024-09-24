@@ -1,17 +1,12 @@
 https://example1.png
-Descriptions go under each image like this! png/jpeg/jpg/gif supported.
+This is the finished animation, It was mainly done in blender with its inbuild motion tracking.
 
-https://example2.jpg
-Description for example2.jpg.
+https://drive.google.com/file/d/1JESeOvbvnxTHC_cCU6F4ovuyJvRzhyFg/preview
+This is a test gif I did to try and find the motion and style of animation I wanted to go with, I ended up going for a more smooth and stylised animation type as I thought it fitted with this sort of goofy character.
 
-https://example3.gif
-These aren't real images but need replacing with your own.
+https://drive.google.com/file/d/1IietQTdKzI8R83ClTFg9L2hbPpvwpQAC/preview
+This is a video on how the rig for the character works, I tried to keep it quite simple becuase I am new to blender rigging and I wanted to learn how rigging actualy works in blender by using constraints and bones rather than an autorigger.
 
-https://examplevideo.mp4
-MP4's are also supported but like with images should be hosted somewhere like dropbox.
+https://drive.google.com/file/d/1JELcua3N9-5VwCiqFe4BjwIcYUnhmhCA/preview // https://drive.google.com/file/d/1JEMFcRpfAl6X7zvESQBouX6ct9nzOmPy/preview
 
-https://beforepic.png // https://afterpic.png
-You can create before and after slider by seperating two urls with ' // ' 
-
-https://sketchfabexample.com 
-you can also embed sketchfab files by pasting the url, no need for direct embedd urls. 
+https://drive.google.com/file/d/1IswHPHJxB0FAlt46WlstxsB-S6s75tdo/preview
