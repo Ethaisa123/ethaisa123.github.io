@@ -4,6 +4,6 @@ This project was university where we went through the whole concept to final ani
 ---
 Maya, zbrush, substance painter
 ---
-https://drive.google.com/thumbnail?id=1-f75hIBrUToVVGPkisCkdr5vG7CUvIwU&sz=w1000
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CreatureProject/head.png
 ---
 Creature.html

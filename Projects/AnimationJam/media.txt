@@ -1,10 +1,9 @@
-https://youtu.be/zB65EEKTdI4
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Eye_wipe.mp4
 
-https://drive.google.com/thumbnail?id=1JESeOvbvnxTHC_cCU6F4ovuyJvRzhyFg&sz=w1000
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/eye_gif.gif
 
-https://youtu.be/36Ql8Qx-bko
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/animation.mp4
 
-https://drive.google.com/thumbnail?id=1JELcua3N9-5VwCiqFe4BjwIcYUnhmhCA&sz=w1000 // https://drive.google.com/thumbnail?id=1JEMFcRpfAl6X7zvESQBouX6ct9nzOmPy&sz=w1000
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animationjam_04_before.png // https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animationjam_04_after.png
 
-https://drive.google.com/thumbnail?id=1Ibdk9aVif-FIxpuudjz2Ng9nzYHpYAt9&sz=w1000
-
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animation_jam.png
