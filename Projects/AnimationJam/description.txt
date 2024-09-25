@@ -4,6 +4,6 @@ The WDYL animation jam is an animation jam I hosted with a few of my friends, th
 ---
 Blender
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animation_jam.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animation_jam.png
 ---
 wdyl_jam.html
