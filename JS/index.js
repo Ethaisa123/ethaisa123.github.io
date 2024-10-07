@@ -19,7 +19,7 @@ function createThumbnail(src, alt, galleryPageUrl, hasMultipleImages, hasVideo, 
     if (hasMultipleImages) {
         const multipleImagesIcon = document.createElement("i");
         multipleImagesIcon.className = "fa-solid fa-layer-group overlay-icon";
-        multipleImagesIcon.style.left = `${10 + iconIndex * 30}px`;
+        multipleImagesIcon.style.center = `${10 + iconIndex * 30}px`;
         thumbnailDiv.appendChild(multipleImagesIcon);
         iconIndex++;
     }
