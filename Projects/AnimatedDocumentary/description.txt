@@ -6,6 +6,6 @@ The goal of the animation is to completely immerse you in its setting through th
 ---
 Maya, blender
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CreatureProject/head.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimatedDocumentery/poster05.png
 ---
 AnimatedDocumentary.html
