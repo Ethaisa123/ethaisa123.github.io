@@ -4,7 +4,7 @@ This project is a retelling of a story I was often told as a child by my father 
 The goal of the animation is to completely immerse you in its setting through the use of animation techniques and audio design. I aimed to create something that could remind the viewer about a  time when they were told stories by there parents, to take them back to when they were kids and make them feel cozy with the warm lighting and soft ambient sound effects.
 
 ---
-Maya, zbrush, substance painter
+Maya, blender
 ---
 https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CreatureProject/head.png
 ---
