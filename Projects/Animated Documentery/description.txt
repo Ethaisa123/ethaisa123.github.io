@@ -8,4 +8,4 @@ Maya, blender
 ---
 https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CreatureProject/head.png
 ---
-AnimatedDocumentery.html
+AnimatedDocumentary.html
