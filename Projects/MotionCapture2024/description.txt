@@ -5,6 +5,6 @@ Motion Capture projects from semester 3 and 4 at AUT
 ---
 Maya, Motion builder, Faceware, Cortex
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/mocap_smoke_02_10440.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/MiscImages/mocap_smoke_02_10440.png
 ---
 MotionCapture2024.html

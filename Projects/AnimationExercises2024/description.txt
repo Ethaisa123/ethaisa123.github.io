@@ -5,6 +5,6 @@ This is a collection of animation exercises I did in 2024 from newest to oldes.
 ---
 Maya, blender
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimatedDocumentery/poster05.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Animation+Practice+images/Animation+Practice+thumbnail.png
 ---
 AnimationExercises2024.html
