@@ -1,3 +1,6 @@
 AnimationJam
 CreatureProject
 AnimatedDocumentary
+AnimationExercises2024
+MotionCapture2024
+VirtualRealityProjects
