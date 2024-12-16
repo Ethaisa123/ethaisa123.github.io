@@ -1,7 +1,6 @@
 VR Projects
 ---
 Misc VR Projects I did at AUT.
-
 ---
 Unreal, Unity, Blender
 ---
