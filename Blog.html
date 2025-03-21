@@ -1,81 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ethan van Wijk</title>
-    <link rel="stylesheet" href="../CSS/indexstyle.css?v=1.0" />
-    <link rel="stylesheet" href="../CSS/thumbnailstyle.css?v=1.0" />
-    <link rel="stylesheet" href="../CSS/userinformationstyle.css?v=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css?v=1.0" />
-    <link rel="icon" href="../../Resources/favicon/pilfav.png" type="image/png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Embeds</title>
 </head>
 <body>
-    <div class="main-container">
-        <div class="top-container">
-            <div class="user-info-panel">
-                <!-- User Information Here -->
-            </div>
-            <div class="navigation-buttons">
-                <a href="index.html" class="nav-button" id="nav-portfolio">Portfolio</a>
-                <a href="about.html" class="nav-button" id="nav-about">About</a>
-                <a href="blog.html" class="nav-button" id="nav-about">Blog</a>
-            </div>
-        </div>
-        <div class="bottom-container">
-                <div id="content"></div>
-                <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-                <script>
-                    // Example of how you might fetch markdown files dynamically
-                    const files = ["file1.md", "file2.md"]; // List of markdown files in your folder
+    <div id="markdown-container"></div>
 
-                    // Function to load and display markdown files
-                    async function loadMarkdownFiles() {
-                    const contentDiv = document.getElementById('content');
-                    
-                    for (let file of files) {
-                        try {
-                        const response = await fetch(file);
-                        if (response.ok) {
-                            const markdown = await response.text();
-                            const html = marked(markdown); // Convert Markdown to HTML
-                            const fileDiv = document.createElement('div');
-                            fileDiv.innerHTML = html;
-                            contentDiv.appendChild(fileDiv);
-                        } else {
-                            console.error(`Failed to load ${file}`);
-                        }
-                        } catch (error) {
-                        console.error('Error fetching markdown file:', error);
-                        }
-                    }
-                    }
-                    loadMarkdownFiles();
-                </script>
-        </div>
-    </div>
-    <div class="resize-buttons">
-        <button id="plus-button" class="resize-button">+</button>
-        <button id="minus-button" class="resize-button">-</button>
-    </div>
-    <!-- Link to the external JavaScript files -->
-    
-    <script src="../JS/userinformation.js?v=1.0"></script>
-    <script src="../JS/index.js?v=1.0"></script>
-    <script src="../JS/resize-thumbnails.js"></script>
     <script>
-        // JavaScript to add 'active' class to the current page's navigation button
-        document.addEventListener("DOMContentLoaded", function() {
-            const currentPath = window.location.pathname.split('/').pop();
-            const navButtons = document.querySelectorAll('.nav-button');
-            navButtons.forEach(button => {
-                if (button.getAttribute('href') === currentPath) {
-                    button.classList.add('active');
-                }
-            });
-        });
+        const markdownFiles = ['file1.md', 'file2.md']; // Add the names of your markdown files here
+
+        // Function to fetch and display markdown files
+        function fetchMarkdown(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(text => {
+                    const section = document.createElement('section');
+                    const title = document.createElement('h2');
+                    title.textContent = file.replace('.md', ''); // Use filename as the title
+                    const content = document.createElement('div');
+                    content.innerHTML = marked(text); // Convert markdown to HTML
+
+                    section.appendChild(title);
+                    section.appendChild(content);
+                    document.getElementById('markdown-container').appendChild(section);
+                })
+                .catch(error => console.error('Error fetching file:', error));
+        }
+
+        // Fetch and display all markdown files
+        markdownFiles.forEach(file => fetchMarkdown(file));
     </script>
+
+    <!-- Include the markdown-it library to parse the Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
 </body>
 </html>
