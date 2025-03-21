@@ -25,7 +25,35 @@
             </div>
         </div>
         <div class="bottom-container">
-            <div class="thumbnail-container" id="thumbnail-container"></div>
+                <div id="content"></div>
+                <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+                <script>
+                    // Example of how you might fetch markdown files dynamically
+                    const files = ["file1.md", "file2.md"]; // List of markdown files in your folder
+
+                    // Function to load and display markdown files
+                    async function loadMarkdownFiles() {
+                    const contentDiv = document.getElementById('content');
+                    
+                    for (let file of files) {
+                        try {
+                        const response = await fetch(file);
+                        if (response.ok) {
+                            const markdown = await response.text();
+                            const html = marked(markdown); // Convert Markdown to HTML
+                            const fileDiv = document.createElement('div');
+                            fileDiv.innerHTML = html;
+                            contentDiv.appendChild(fileDiv);
+                        } else {
+                            console.error(`Failed to load ${file}`);
+                        }
+                        } catch (error) {
+                        console.error('Error fetching markdown file:', error);
+                        }
+                    }
+                    }
+                    loadMarkdownFiles();
+                </script>
         </div>
     </div>
     <div class="resize-buttons">
@@ -33,6 +61,7 @@
         <button id="minus-button" class="resize-button">-</button>
     </div>
     <!-- Link to the external JavaScript files -->
+    
     <script src="../JS/userinformation.js?v=1.0"></script>
     <script src="../JS/index.js?v=1.0"></script>
     <script src="../JS/resize-thumbnails.js"></script>
