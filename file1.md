@@ -1,2 +1,0 @@
-# blag
-djiuwojiodajiodwajiodwa
