@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markdown Display</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Viewer</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="content"></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Example of how you might fetch markdown files dynamically
+    const files = ["file1.md", "file2.md"]; // List of markdown files in your folder
 
-    <h1>Markdown Files</h1>
-    <div id="markdown-list"></div>
+    // Function to load and display markdown files
+    async function loadMarkdownFiles() {
+      const contentDiv = document.getElementById('content');
+      
+      for (let file of files) {
+        try {
+          const response = await fetch(file);
+          if (response.ok) {
+            const markdown = await response.text();
+            const html = marked(markdown); // Convert Markdown to HTML
+            const fileDiv = document.createElement('div');
+            fileDiv.innerHTML = html;
+            contentDiv.appendChild(fileDiv);
+          } else {
+            console.error(`Failed to load ${file}`);
+          }
+        } catch (error) {
+          console.error('Error fetching markdown file:', error);
+        }
+      }
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="blog.js"></script>
+    loadMarkdownFiles();
+  </script>
 </body>
 </html>
