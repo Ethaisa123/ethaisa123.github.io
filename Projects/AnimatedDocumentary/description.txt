@@ -1,4 +1,4 @@
-AnimatedDocumentary
+Animated Documentary 2024
 ---
 This project is a retelling of a story I was often told as a child by my father about how he got lost in the bush.
 The goal of the animation is to completely immerse you in its setting through the use of animation techniques and audio design. I aimed to create something that could remind the viewer about a  time when they were told stories by there parents, to take them back to when they were kids and make them feel cozy with the warm lighting and soft ambient sound effects.

@@ -1,4 +1,4 @@
-CreatureProject
+Creature Project 2024
 ---
 This project was for uni where we went through the whole concept to final animation pipeline in a group setting, I was tasked with sculpting, Retopo, Rigging, environemts, rendering and animating scenes 2-3.
 ---

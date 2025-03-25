@@ -1,4 +1,4 @@
-AniamtionJam
+Aniamtion Jam 2024
 ---
 The WDYL animation jam is an animation jam I hosted with a few of my friends, the theme was daily life of a monster and the time given was 1 week. I choose to use Blenders inbuilt motion tracker to track the backrounds for the 
 ---
