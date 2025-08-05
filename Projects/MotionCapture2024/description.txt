@@ -1,7 +1,6 @@
 Motion Capture 2024
 ---
-Motion Capture projects from semester 3 and 4 at AUT
-
+Motion capture projects from Semesters 3 and 4 at AUT.
 ---
 Maya, Motion builder, Faceware, Cortex
 ---

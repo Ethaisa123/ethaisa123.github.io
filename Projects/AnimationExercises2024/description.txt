@@ -1,7 +1,6 @@
 Animated Exercises 2024
 ---
-This is a collection of animation exercises I did in 2024 from newest to oldes.
-
+This is a collection of animation exercises I completed in 2024, listed from newest to oldest.
 ---
 Maya, blender
 ---

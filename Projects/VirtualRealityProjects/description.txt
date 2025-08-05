@@ -1,6 +1,6 @@
-VR Projects 2024
+VR/XR Projects 2024
 ---
-Misc VR Projects I did at AUT.
+Various VR projects completed at AUT, exploring different aspects of virtual reality development.
 ---
 Unreal, Unity, Blender
 ---

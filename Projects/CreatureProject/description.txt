@@ -1,6 +1,6 @@
 Creature Project 2024
 ---
-This project was for uni where we went through the whole concept to final animation pipeline in a group setting, I was tasked with sculpting, Retopo, Rigging, environemts, rendering and animating scenes 2-3.
+This university project involved taking a concept through the entire pipeline to final animation in a group setting. I was responsible for sculpting, retopology, rigging, environments, rendering, and animating scenes 2 and 3.
 ---
 Maya, zbrush, substance painter
 ---
