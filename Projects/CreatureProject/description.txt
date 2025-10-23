@@ -1,4 +1,4 @@
-Creature Project 2024
+AUT - Creature Project 2024
 ---
 This university project involved taking a concept through the entire pipeline to final animation in a group setting. I was responsible for sculpting, retopology, rigging, environments, rendering, and animating scenes 2 and 3.
 ---
