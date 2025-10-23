@@ -20,7 +20,7 @@ Auckland University of Technology
 https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Homepage/Mynth_Poster.png
 This project was a group animation assessment about a creature. The assessment involved modeling and sculpting a creature from scratch, re-topologizing, rigging, and texturing the creature, and then animating it in a custom-built environment. This assessment also emphasized teamwork and communication, as we collaborated closely with other members of a group to bring the animation to life.
 ---
-ROBO RE-LIFE -- Animator
+ROBO RE-LIFE - Animator
 Auckland University of Technology
 2023
 https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Homepage/Robot_poster.png
