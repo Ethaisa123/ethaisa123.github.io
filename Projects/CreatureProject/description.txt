@@ -1,9 +1,9 @@
-AUT - Creature Project 2024
+AUT - MYNTH - Creature Project 2024
 ---
 This university project involved taking a concept through the entire pipeline to final animation in a group setting. I was responsible for sculpting, retopology, rigging, environments, rendering, and animating scenes 2 and 3.
 ---
 Maya, zbrush, substance painter
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CreatureProject/head.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Homepage/Mynth_Poster.png
 ---
 Creature.html

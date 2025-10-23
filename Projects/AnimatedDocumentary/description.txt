@@ -1,4 +1,4 @@
-AUT - Animated Documentary 2024
+AUT - UNFOUND - Animated Documentary 2024
 ---
 This project is a retelling of a story my father often told me as a child, about how he got lost in the bush.
 The goal of the animation is to completely immerse you in its setting through the use of animation techniques and audio design.
@@ -6,6 +6,6 @@ I aimed to create something that reminds the viewer of a time when they were tol
 ---
 Maya, blender
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimatedDocumentery/poster05.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Poster.png
 ---
 AnimatedDocumentary.html
