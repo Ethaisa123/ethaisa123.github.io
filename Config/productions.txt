@@ -2,6 +2,18 @@
 # When you add one then productions.js will automatically add it after saving
 # Format: Title, Company, Time, Thumbnail URL, Description 
 ---
+3D animator/ 3D environment modeler
+Auckland University of Technology
+2024
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/corvus+ex+machina+poster.png
+Corvix Ex Machina was my capstone project, my reaserch question (and thus my role in the group) was character animation first and foremost, I learned a lot about working in teams and the importance of communication and what to do when things go wrong, I am very proud of the work I did in this project and I feel that I have been able to grow as an animator through it.
+---
+Solo Project
+Auckland University of Technology
+2024
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/Poster.png
+This was a solo animated documentary where we animated an interview we took ourselves, I did the whole project from storyboards and concepts to rendering and compositing, my main focust was on how to make limited animation look good in a realistic environment and that pushed me to learn about limited animation techniques and how the could be applied to my project!
+---
 Animator/Team lead
 Auckland University of Technology
 2024
