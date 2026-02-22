@@ -1,4 +1,5 @@
 AnimationJam
+CapstoneProject
 CreatureProject
 AnimatedDocumentary
 AnimationExercises2024

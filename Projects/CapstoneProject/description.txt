@@ -1,0 +1,9 @@
+Animation Jam 2024
+---
+The WDYL Animation Jam is a jam I hosted with a few friends. The theme was “Daily Life of a Monster,” and we had one week to complete our entries. I chose to use Blender's built-in motion tracker to track the backgrounds for the project.
+---
+Blender
+---
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animation_jam.png
+---
+wdyl_jam.html
