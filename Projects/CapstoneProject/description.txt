@@ -1,9 +1,10 @@
 Capstone Project 2025
 ---
-My capstone project for AUT was a short animation teaser for a film called Corvus Ex Machina that follows adriel as he grapples with his grief and loss of his sister.
+My capstone project for AUT was a short animation teaser for a film called Corvus Ex Machina that follows adriel as he grapples with his grief and loss of his sister. My research question (and thus my role in the group) focused primarily on character animation but I also worked a lot on creating the 3D environments. I learned a lot about teamwork, the importance of communication, and how to handle challenges when things go wrong. I’m very proud of the work I did on this project and feel that I’ve grown significantly as an animator through it.
+
 ---
 Maya
 ---
 https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CxM_AD25_AVG_Poster_Template_TEXT_UNRASTEREDv2_0.png
 ---
-Capstone.html
+CapstoneProject.html
