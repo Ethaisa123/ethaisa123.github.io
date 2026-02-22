@@ -1,9 +1,9 @@
-Animation Jam 2024
+Capstone Project 2025
 ---
-The WDYL Animation Jam is a jam I hosted with a few friends. The theme was “Daily Life of a Monster,” and we had one week to complete our entries. I chose to use Blender's built-in motion tracker to track the backgrounds for the project.
+My capstone project for AUT was a short animation teaser for a film called Corvus Ex Machina that follows adriel as he grapples with his grief and loss of his sister.
 ---
-Blender
+Maya
 ---
-https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/AnimationJam/Animation_jam.png
+https://portfolio-images-ethanvanwijk.s3.ap-southeast-2.amazonaws.com/CxM_AD25_AVG_Poster_Template_TEXT_UNRASTEREDv2_0.png
 ---
-wdyl_jam.html
+Capstone.html
