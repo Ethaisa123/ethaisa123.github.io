@@ -694,6 +694,103 @@
     max-width: 340px;
   }
 
+  /* ── KEYWORD SEARCH ── */
+  .keyword-input-wrap {
+    position: relative;
+  }
+
+  .keyword-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 9px 36px 9px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    min-height: 70px;
+    line-height: 1.5;
+  }
+
+  .keyword-input:focus { border-color: var(--accent); }
+  .keyword-input::placeholder { color: var(--muted); }
+
+  .keyword-hint {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+
+  .keyword-scope {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .scope-btn {
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    color: var(--muted);
+    background: transparent;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .scope-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .scope-btn.active { background: var(--pill-bg); border-color: var(--accent); color: var(--pill-text); }
+
+  .kw-match-mode {
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+  }
+
+  .match-btn {
+    flex: 1;
+    font-size: 10px;
+    padding: 4px 6px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    color: var(--muted);
+    background: transparent;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.15s;
+    text-align: center;
+  }
+
+  .match-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .match-btn.active { background: var(--pill-bg); border-color: var(--accent); color: var(--pill-text); }
+
+  /* Highlighted keyword matches on cards */
+  .desc-snippet {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    margin-bottom: 4px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  mark {
+    background: rgba(108,99,255,0.25);
+    color: var(--pill-text);
+    border-radius: 3px;
+    padding: 0 2px;
+    font-weight: 500;
+  }
+
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -769,8 +866,26 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div>
-        <div class="sidebar-section-title">Search</div>
-        <input class="search-box" type="text" id="search-input" placeholder="Channel name…" oninput="applyFilters()">
+        <div class="sidebar-section-title">Channel Name</div>
+        <input class="search-box" type="text" id="search-input" placeholder="Search by name…" oninput="applyFilters()">
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Keyword Search</div>
+        <div class="keyword-input-wrap">
+          <textarea class="keyword-input" id="keyword-input" placeholder="photography&#10;landscape&#10;travel" oninput="applyFilters()"></textarea>
+        </div>
+        <div class="keyword-hint">One keyword per line. Searches channel descriptions, names &amp; topics.</div>
+        <div class="kw-match-mode">
+          <button class="match-btn active" id="match-any" onclick="setMatchMode('any')">ANY word</button>
+          <button class="match-btn" id="match-all" onclick="setMatchMode('all')">ALL words</button>
+        </div>
+        <div class="sidebar-section-title" style="margin-top:8px;">Search in</div>
+        <div class="keyword-scope">
+          <button class="scope-btn active" id="scope-name" onclick="toggleScope('name', this)">Name</button>
+          <button class="scope-btn active" id="scope-desc" onclick="toggleScope('desc', this)">Description</button>
+          <button class="scope-btn active" id="scope-topics" onclick="toggleScope('topics', this)">Topics</button>
+        </div>
       </div>
 
       <div>
@@ -877,6 +992,8 @@ let activeTags = new Set();
 let sortDir = 'asc';
 let currentView = 'grid';
 let accessToken = null;
+let kwMatchMode = 'any'; // 'any' | 'all'
+let kwScopes = new Set(['name', 'desc', 'topics']);
 
 // Slider scaling helpers — use exponential for wide ranges
 const subSliderVal  = v => Math.round(Math.pow(10, v / 100 * 7)); // 1 → 10M
@@ -1082,9 +1199,84 @@ function updateSliders() {
   updateSlider('vid-filter','vid-val',vidSliderVal);
 }
 
+function setMatchMode(mode) {
+  kwMatchMode = mode;
+  document.getElementById('match-any').classList.toggle('active', mode === 'any');
+  document.getElementById('match-all').classList.toggle('active', mode === 'all');
+  applyFilters();
+}
+
+function toggleScope(scope, btn) {
+  if (kwScopes.has(scope)) {
+    if (kwScopes.size === 1) return; // keep at least one
+    kwScopes.delete(scope);
+    btn.classList.remove('active');
+  } else {
+    kwScopes.add(scope);
+    btn.classList.add('active');
+  }
+  applyFilters();
+}
+
+function getKeywords() {
+  return document.getElementById('keyword-input').value
+    .split('\n')
+    .map(k => k.trim().toLowerCase())
+    .filter(k => k.length > 0);
+}
+
+function channelMatchesKeywords(c, keywords) {
+  if (keywords.length === 0) return { match: true, snippet: '' };
+
+  const searchable = [];
+  if (kwScopes.has('name'))   searchable.push(c.name.toLowerCase());
+  if (kwScopes.has('desc'))   searchable.push(c.description.toLowerCase());
+  if (kwScopes.has('topics')) searchable.push(c.topics.join(' ').toLowerCase());
+  const blob = searchable.join(' ');
+
+  const matched = keywords.filter(kw => blob.includes(kw));
+
+  const passes = kwMatchMode === 'any'
+    ? matched.length > 0
+    : matched.length === keywords.length;
+
+  if (!passes) return { match: false, snippet: '' };
+
+  // Build a short snippet from description showing context around first match
+  let snippet = '';
+  if (kwScopes.has('desc') && c.description) {
+    const desc = c.description;
+    const lc = desc.toLowerCase();
+    const firstKw = matched.find(kw => lc.includes(kw));
+    if (firstKw) {
+      const idx = lc.indexOf(firstKw);
+      const start = Math.max(0, idx - 40);
+      const end = Math.min(desc.length, idx + firstKw.length + 80);
+      snippet = (start > 0 ? '…' : '') + desc.slice(start, end) + (end < desc.length ? '…' : '');
+    }
+  }
+
+  return { match: true, snippet, matchedKws: matched };
+}
+
+function highlightKeywords(text, keywords) {
+  if (!keywords || keywords.length === 0) return escHtml(text);
+  let result = escHtml(text);
+  keywords.forEach(kw => {
+    const re = new RegExp(escRegex(kw), 'gi');
+    result = result.replace(re, m => `<mark>${m}</mark>`);
+  });
+  return result;
+}
+
+function escRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 // ── FILTERS ──────────────────────────────────────────────────────────────────
 function applyFilters() {
   const query = document.getElementById('search-input').value.toLowerCase();
+  const keywords = getKeywords();
   const minSubs   = subSliderVal(parseInt(document.getElementById('sub-filter').value));
   const minVpm    = vpmSliderVal(parseInt(document.getElementById('vpm-filter').value));
   const minVids   = vidSliderVal(parseInt(document.getElementById('vid-filter').value));
@@ -1093,8 +1285,15 @@ function applyFilters() {
   const filterActive  = document.getElementById('filter-active').checked;
   const sortKey   = document.getElementById('sort-select').value;
 
-  filteredChannels = allChannels.filter(c => {
+  // Store keyword match results alongside channels for rendering
+  const withMatch = allChannels.map(c => {
+    const kwResult = channelMatchesKeywords(c, keywords);
+    return { c, kwResult };
+  });
+
+  const filtered = withMatch.filter(({ c, kwResult }) => {
     if (query && !c.name.toLowerCase().includes(query)) return false;
+    if (!kwResult.match) return false;
     if (c.subs < minSubs && !c.hiddenSubs) return false;
     if (c.vpm < minVpm) return false;
     if (c.videos < minVids) return false;
@@ -1109,29 +1308,33 @@ function applyFilters() {
   });
 
   // Sort
-  filteredChannels.sort((a,b) => {
+  filtered.sort((a, b) => {
+    const { c: ac } = a, { c: bc } = b;
     let av, bv;
     switch(sortKey) {
-      case 'name': av = a.name.toLowerCase(); bv = b.name.toLowerCase(); break;
-      case 'subscribers': av = a.subs; bv = b.subs; break;
-      case 'views': av = a.views; bv = b.views; break;
-      case 'videos': av = a.videos; bv = b.videos; break;
-      case 'vpm': av = a.vpm; bv = b.vpm; break;
-      case 'lastUpload': av = a.publishedAt||''; bv = b.publishedAt||''; break;
-      default: av = a.name.toLowerCase(); bv = b.name.toLowerCase();
+      case 'name': av = ac.name.toLowerCase(); bv = bc.name.toLowerCase(); break;
+      case 'subscribers': av = ac.subs; bv = bc.subs; break;
+      case 'views': av = ac.views; bv = bc.views; break;
+      case 'videos': av = ac.videos; bv = bc.videos; break;
+      case 'vpm': av = ac.vpm; bv = bc.vpm; break;
+      case 'lastUpload': av = ac.publishedAt||''; bv = bc.publishedAt||''; break;
+      default: av = ac.name.toLowerCase(); bv = bc.name.toLowerCase();
     }
     if (av < bv) return sortDir === 'asc' ? -1 : 1;
     if (av > bv) return sortDir === 'asc' ? 1 : -1;
     return 0;
   });
 
-  renderChannels();
+  filteredChannels = filtered.map(({ c, kwResult }) => ({ ...c, _snippet: kwResult.snippet, _matchedKws: kwResult.matchedKws || [] }));
+
+  renderChannels(keywords);
   document.getElementById('results-info').textContent =
     `${filteredChannels.length} of ${allChannels.length} channels`;
 }
 
 function resetFilters() {
   document.getElementById('search-input').value = '';
+  document.getElementById('keyword-input').value = '';
   document.getElementById('sub-filter').value = 0;
   document.getElementById('vpm-filter').value = 0;
   document.getElementById('vid-filter').value = 0;
@@ -1140,12 +1343,21 @@ function resetFilters() {
   document.getElementById('filter-active').checked = false;
   activeTags.clear();
   document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+  // Reset keyword match mode
+  kwMatchMode = 'any';
+  document.getElementById('match-any').classList.add('active');
+  document.getElementById('match-all').classList.remove('active');
+  // Reset scopes to all on
+  kwScopes = new Set(['name', 'desc', 'topics']);
+  document.getElementById('scope-name').classList.add('active');
+  document.getElementById('scope-desc').classList.add('active');
+  document.getElementById('scope-topics').classList.add('active');
   updateSliders();
   applyFilters();
 }
 
 // ── RENDER ───────────────────────────────────────────────────────────────────
-function renderChannels() {
+function renderChannels(keywords) {
   const grid = document.getElementById('channel-grid');
   const empty = document.getElementById('empty-state');
 
@@ -1156,10 +1368,10 @@ function renderChannels() {
   }
   empty.style.display = 'none';
 
-  grid.innerHTML = filteredChannels.map((c, i) => channelCardHTML(c, i)).join('');
+  grid.innerHTML = filteredChannels.map((c, i) => channelCardHTML(c, i, keywords || [])).join('');
 }
 
-function channelCardHTML(c, i) {
+function channelCardHTML(c, i, keywords) {
   const thumbEl = c.thumb
     ? `<img class="channel-thumb" src="${c.thumb}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'channel-thumb placeholder\\'>${c.name[0].toUpperCase()}</div>'">`
     : `<div class="channel-thumb placeholder">${c.name[0].toUpperCase()}</div>`;
@@ -1167,7 +1379,10 @@ function channelCardHTML(c, i) {
   const statusCls = c.hiddenSubs ? 'status-warn' : (c.madeForKids ? 'status-good' : 'status-good');
   const statusTxt = c.madeForKids ? 'Kids' : (c.hiddenSubs ? 'Hidden subs' : 'Public');
 
-  const tags = c.topics.slice(0,2).map(t => `<span class="tag">${t}</span>`).join('');
+  const tags = c.topics.slice(0,2).map(t => {
+    const highlighted = highlightKeywords(t, keywords);
+    return `<span class="tag">${highlighted}</span>`;
+  }).join('');
 
   const url = c.handle
     ? `https://youtube.com/${c.handle}`
@@ -1175,16 +1390,24 @@ function channelCardHTML(c, i) {
 
   const delay = Math.min(i * 30, 400);
 
+  // Show description snippet if keyword matched in description
+  const snippetHtml = c._snippet
+    ? `<div class="desc-snippet">${highlightKeywords(c._snippet, keywords)}</div>`
+    : '';
+
+  const highlightedName = highlightKeywords(c.name, keywords);
+
   return `
   <div class="channel-card" style="animation-delay:${delay}ms">
     <div class="card-header">
       ${thumbEl}
       <div class="channel-info">
-        <div class="channel-name" title="${escHtml(c.name)}">${escHtml(c.name)}</div>
+        <div class="channel-name" title="${escHtml(c.name)}">${highlightedName}</div>
         <div class="channel-handle">${c.handle || c.id}</div>
       </div>
       <a class="channel-link" href="${url}" target="_blank" title="Open channel" rel="noopener">↗</a>
     </div>
+    ${snippetHtml}
     <div class="stat-grid">
       <div class="stat-cell">
         <span class="stat-value">${c.hiddenSubs ? '—' : fmtNum(c.subs)}</span>
