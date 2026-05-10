@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SubScope — YouTube Subscription Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #18181f;
+    --card: #1c1c26;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0f0f5;
+    --muted: #8888a0;
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --red: #f87171;
+    --blue: #60a5fa;
+    --pill-bg: rgba(108,99,255,0.12);
+    --pill-text: #a5a0ff;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot { color: var(--accent); }
+
+  .header-right { display: flex; align-items: center; gap: 12px; }
+
+  .channel-count {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    background: var(--bg3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── CONNECT SCREEN ── */
+  #connect-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .hero-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--pill-bg);
+    border: 1px solid rgba(108,99,255,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    max-width: 600px;
+  }
+
+  .hero-title span { color: var(--accent); }
+
+  .hero-sub {
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .connect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    border: none;
+    border-radius: var(--radius);
+    padding: 13px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .connect-btn:hover { background: #7c74ff; transform: translateY(-1px); }
+  .connect-btn:active { transform: translateY(0); }
+
+  .connect-btn svg { width: 20px; height: 20px; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    max-width: 720px;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .feature-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .feature-title { font-weight: 500; font-size: 13px; margin-bottom: 4px; }
+  .feature-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── SETUP NOTICE ── */
+  #setup-notice {
+    background: rgba(251,191,36,0.08);
+    border: 1px solid rgba(251,191,36,0.25);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    max-width: 540px;
+    margin-top: 2rem;
+    text-align: left;
+    font-size: 13px;
+    color: var(--amber);
+  }
+
+  #setup-notice strong { display: block; margin-bottom: 6px; font-size: 14px; }
+
+  .setup-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    align-items: stretch;
+  }
+
+  .setup-input {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .setup-input:focus { border-color: var(--accent); }
+  .setup-input::placeholder { color: var(--muted); }
+
+  .setup-save-btn {
+    background: var(--amber);
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+    border: none;
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .setup-save-btn:hover { opacity: 0.85; }
+
+  /* ── MAIN APP ── */
+  #app-screen { display: none; }
+
+  .app-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 1.25rem;
+    background: var(--bg2);
+    position: sticky;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sidebar-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .search-box {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .search-box:focus { border-color: var(--accent); }
+  .search-box::placeholder { color: var(--muted); }
+
+  .filter-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .filter-label {
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .filter-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--bg3);
+    border-radius: 2px;
+    outline: none;
+    accent-color: var(--accent);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--bg);
+  }
+
+  .topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .topic-pill {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    cursor: pointer;
+    color: var(--muted);
+    background: transparent;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .topic-pill:hover { border-color: var(--accent); color: var(--accent); }
+  .topic-pill.active { background: var(--pill-bg); border-color: var(--accent); color: var(--pill-text); }
+
+  .sort-select {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 10px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .sort-select option { background: var(--bg3); }
+
+  .sort-dir-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  .dir-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .dir-btn.active { background: var(--pill-bg); border-color: var(--accent); color: var(--pill-text); }
+
+  .status-filters { display: flex; flex-direction: column; gap: 5px; }
+
+  .status-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .status-check:hover { color: var(--text); }
+
+  .status-check input { accent-color: var(--accent); cursor: pointer; }
+
+  .reset-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.15s;
+    margin-top: auto;
+  }
+
+  .reset-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── MAIN CONTENT ── */
+  .main-content { padding: 1.5rem; overflow-x: hidden; }
+
+  .results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .results-info {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .view-btns {
+    display: flex;
+    gap: 4px;
+  }
+
+  .view-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 7px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 16px;
+  }
+
+  .view-btn.active { background: var(--pill-bg); border-color: var(--accent); color: var(--accent); }
+
+  /* ── GRID VIEW ── */
+  #channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── LIST VIEW ── */
+  #channel-grid.list-view {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── CHANNEL CARD ── */
+  .channel-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem;
+    transition: border-color 0.2s, transform 0.15s;
+    animation: fadeIn 0.3s ease forwards;
+    opacity: 0;
+    cursor: default;
+  }
+
+  .channel-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .channel-thumb {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border2);
+    flex-shrink: 0;
+    background: var(--bg3);
+  }
+
+  .channel-thumb.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+    background: var(--pill-bg);
+  }
+
+  .channel-info { flex: 1; min-width: 0; }
+
+  .channel-name {
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+  }
+
+  .channel-handle {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .channel-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 16px;
+    flex-shrink: 0;
+    transition: color 0.15s;
+    padding: 4px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+  }
+
+  .channel-link:hover { color: var(--accent); background: var(--pill-bg); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .stat-cell {
+    background: var(--bg3);
+    border-radius: 8px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    border: 1px solid rgba(108,99,255,0.2);
+    white-space: nowrap;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .status-good { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .status-warn { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+  .status-bad  { background: rgba(248,113,113,0.1); color: var(--red);   border: 1px solid rgba(248,113,113,0.2); }
+
+  /* List view card tweaks */
+  .list-view .channel-card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .list-view .card-header { margin-bottom: 0; flex: none; }
+  .list-view .card-body { display: contents; }
+  .list-view .stat-grid { grid-template-columns: repeat(6, 1fr); margin-bottom: 0; }
+  .list-view .card-footer { flex-direction: column; align-items: flex-end; }
+
+  /* ── LOADING / EMPTY ── */
+  .loading-overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .progress-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .empty-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    color: var(--muted);
+    font-size: 14px;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .empty-icon { font-size: 2rem; margin-bottom: 4px; }
+
+  /* ── SUMMARY BAR ── */
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .summary-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .summary-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+  }
+
+  .summary-lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── ERROR TOAST ── */
+  #error-toast {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(248,113,113,0.12);
+    border: 1px solid rgba(248,113,113,0.3);
+    color: var(--red);
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    z-index: 999;
+    max-width: 340px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  @media (max-width: 700px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; }
+    .list-view .stat-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Sub<span class="logo-dot">Scope</span></div>
+  <div class="header-right">
+    <span class="channel-count" id="header-count" style="display:none">0 channels loaded</span>
+    <button class="connect-btn" id="disconnect-btn" style="display:none; font-size:12px; padding:8px 14px; background: var(--bg3); border: 1px solid var(--border2); color: var(--muted);">Disconnect</button>
+  </div>
+</header>
+
+<!-- ── CONNECT SCREEN ── -->
+<div id="connect-screen">
+  <div class="hero-badge">YouTube Subscription Manager</div>
+  <h1 class="hero-title">Sort & filter your<br><span>subscriptions</span></h1>
+  <p class="hero-sub">Connect your YouTube account and explore all your subscribed channels with powerful filters — subscribers, upload frequency, topics, channel standing, and more.</p>
+
+  <button class="connect-btn" id="connect-btn" onclick="startAuth()">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M22.54 6.42A2.78 2.78 0 0 0 20.6 4.46C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" fill="#ff0000"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+    Connect YouTube Account
+  </button>
+
+  <div id="setup-notice">
+    <strong>⚠ One-time setup required</strong>
+    This tool uses the YouTube Data API. You need a Google Cloud OAuth 2.0 Client ID.<br>
+    <a href="SETUP.md" style="color: var(--amber); font-size:12px;">→ View setup guide (SETUP.md)</a>
+    <div class="setup-input-row">
+      <input class="setup-input" type="text" id="client-id-input" placeholder="Paste your OAuth Client ID here…" />
+      <button class="setup-save-btn" onclick="saveClientId()">Save</button>
+    </div>
+    <div id="client-id-status" style="font-size:11px; margin-top:6px; color: var(--green); display:none;">✓ Client ID saved</div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">📊</span>
+      <div class="feature-title">Channel Statistics</div>
+      <div class="feature-desc">Subscribers, total views, video count</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Upload Frequency</div>
+      <div class="feature-desc">Videos per month, last upload date</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏷️</span>
+      <div class="feature-title">Topic Filters</div>
+      <div class="feature-desc">Filter by content categories</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <div class="feature-title">Channel Standing</div>
+      <div class="feature-desc">Hidden subscribers, made for kids flags</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN APP ── -->
+<div id="app-screen">
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-section-title">Search</div>
+        <input class="search-box" type="text" id="search-input" placeholder="Channel name…" oninput="applyFilters()">
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Sort by</div>
+        <select class="sort-select" id="sort-select" onchange="applyFilters()">
+          <option value="name">Channel Name</option>
+          <option value="subscribers">Subscribers</option>
+          <option value="views">Total Views</option>
+          <option value="videos">Video Count</option>
+          <option value="vpm">Videos / Month</option>
+          <option value="lastUpload">Last Upload</option>
+        </select>
+        <div class="sort-dir-btns" style="margin-top:6px;">
+          <button class="dir-btn active" id="dir-asc" onclick="setDir('asc')">↑ Asc</button>
+          <button class="dir-btn" id="dir-desc" onclick="setDir('desc')">↓ Desc</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Min Subscribers</div>
+        <div class="filter-group">
+          <div class="filter-label">At least <span class="filter-value" id="sub-val">0</span></div>
+          <input type="range" id="sub-filter" min="0" max="100" value="0" step="1" oninput="updateSlider('sub-filter','sub-val', subSliderVal); applyFilters()">
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Min Videos / Month</div>
+        <div class="filter-group">
+          <div class="filter-label">At least <span class="filter-value" id="vpm-val">0</span></div>
+          <input type="range" id="vpm-filter" min="0" max="100" value="0" step="1" oninput="updateSlider('vpm-filter','vpm-val', vpmSliderVal); applyFilters()">
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Min Total Videos</div>
+        <div class="filter-group">
+          <div class="filter-label">At least <span class="filter-value" id="vid-val">0</span></div>
+          <input type="range" id="vid-filter" min="0" max="100" value="0" step="1" oninput="updateSlider('vid-filter','vid-val', vidSliderVal); applyFilters()">
+        </div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Topics</div>
+        <div class="topic-pills" id="topic-pills"></div>
+      </div>
+
+      <div>
+        <div class="sidebar-section-title">Channel Flags</div>
+        <div class="status-filters">
+          <label class="status-check"><input type="checkbox" id="filter-kids" onchange="applyFilters()"> Made for Kids only</label>
+          <label class="status-check"><input type="checkbox" id="filter-hide-subs" onchange="applyFilters()"> Hidden subscriber count</label>
+          <label class="status-check"><input type="checkbox" id="filter-active" onchange="applyFilters()"> Active (uploaded in 90d)</label>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetFilters()">↺ Reset all filters</button>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+      <div class="summary-bar" id="summary-bar"></div>
+
+      <div class="results-bar">
+        <span class="results-info" id="results-info">0 channels</span>
+        <div class="view-btns">
+          <button class="view-btn active" id="vb-grid" onclick="setView('grid')" title="Grid view">⊞</button>
+          <button class="view-btn" id="vb-list" onclick="setView('list')" title="List view">☰</button>
+        </div>
+      </div>
+
+      <div id="loading-state" class="loading-overlay" style="display:flex;">
+        <div class="spinner"></div>
+        <span id="loading-text">Connecting to YouTube…</span>
+        <span class="progress-text" id="progress-text"></span>
+      </div>
+
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <strong>No channels match</strong>
+        <span>Try adjusting your filters</span>
+      </div>
+
+      <div id="channel-grid"></div>
+    </main>
+  </div>
+</div>
+
+<div id="error-toast"></div>
+
+<!-- Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+let CLIENT_ID = localStorage.getItem('yt_client_id') || '';
+const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+const YOUTUBE_API = 'https://www.googleapis.com/youtube/v3';
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let allChannels = [];
+let filteredChannels = [];
+let activeTags = new Set();
+let sortDir = 'asc';
+let currentView = 'grid';
+let accessToken = null;
+
+// Slider scaling helpers — use exponential for wide ranges
+const subSliderVal  = v => Math.round(Math.pow(10, v / 100 * 7)); // 1 → 10M
+const vpmSliderVal  = v => parseFloat((v / 10).toFixed(1));        // 0 → 10
+const vidSliderVal  = v => Math.round(v * 100);                     // 0 → 10000
+
+// ── SETUP ───────────────────────────────────────────────────────────────────
+window.onload = () => {
+  if (CLIENT_ID) {
+    document.getElementById('client-id-input').value = CLIENT_ID;
+    document.getElementById('client-id-status').style.display = 'block';
+  }
+};
+
+function saveClientId() {
+  const v = document.getElementById('client-id-input').value.trim();
+  if (!v) return;
+  CLIENT_ID = v;
+  localStorage.setItem('yt_client_id', v);
+  document.getElementById('client-id-status').style.display = 'block';
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────────────────
+function startAuth() {
+  if (!CLIENT_ID) {
+    showError('Please enter your OAuth Client ID first.');
+    return;
+  }
+  const client = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    callback: async (resp) => {
+      if (resp.error) { showError('Auth failed: ' + resp.error); return; }
+      accessToken = resp.access_token;
+      showApp();
+      await loadSubscriptions();
+    }
+  });
+  client.requestAccessToken();
+}
+
+function showApp() {
+  document.getElementById('connect-screen').style.display = 'none';
+  document.getElementById('app-screen').style.display = 'block';
+  document.getElementById('disconnect-btn').style.display = 'flex';
+}
+
+document.getElementById && (() => {
+  const btn = document.getElementById('disconnect-btn');
+  if(btn) btn.onclick = () => {
+    accessToken = null; allChannels = []; filteredChannels = [];
+    document.getElementById('connect-screen').style.display = 'flex';
+    document.getElementById('app-screen').style.display = 'none';
+    document.getElementById('disconnect-btn').style.display = 'none';
+    document.getElementById('header-count').style.display = 'none';
+  };
+})();
+
+// ── DATA FETCHING ────────────────────────────────────────────────────────────
+async function ytGet(endpoint, params) {
+  const url = new URL(YOUTUBE_API + endpoint);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  url.searchParams.set('access_token', accessToken);
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`API error ${r.status}`);
+  return r.json();
+}
+
+async function loadSubscriptions() {
+  setLoading(true, 'Loading subscriptions…');
+  let pageToken = '';
+  let rawSubs = [];
+  let page = 1;
+  try {
+    do {
+      const params = { part: 'snippet,contentDetails', mine: 'true', maxResults: 50 };
+      if (pageToken) params.pageToken = pageToken;
+      const data = await ytGet('/subscriptions', params);
+      rawSubs = rawSubs.concat(data.items || []);
+      pageToken = data.nextPageToken || '';
+      setProgress(`Fetched ${rawSubs.length} subscriptions…`);
+      page++;
+    } while (pageToken && page < 50);
+
+    setProgress(`Loading channel details (0 / ${rawSubs.length})…`);
+    const channelIds = rawSubs.map(s => s.snippet.resourceId.channelId);
+    const chunks = chunkArray(channelIds, 50);
+    allChannels = [];
+
+    for (let i = 0; i < chunks.length; i++) {
+      const data = await ytGet('/channels', {
+        part: 'snippet,statistics,topicDetails,status,brandingSettings',
+        id: chunks[i].join(','),
+        maxResults: 50
+      });
+      allChannels = allChannels.concat((data.items || []).map(processChannel));
+      setProgress(`Loading channel details (${allChannels.length} / ${channelIds.length})…`);
+    }
+
+    setLoading(false);
+    updateSummary();
+    buildTopicPills();
+    updateSliders();
+    applyFilters();
+    document.getElementById('header-count').style.display = 'inline';
+    document.getElementById('header-count').textContent = `${allChannels.length} channels loaded`;
+  } catch(e) {
+    setLoading(false);
+    showError('Failed to load channels: ' + e.message);
+  }
+}
+
+function processChannel(ch) {
+  const stats = ch.statistics || {};
+  const snippet = ch.snippet || {};
+  const topics = (ch.topicDetails?.topicCategories || []).map(t => {
+    const p = t.split('/'); return decodeURIComponent(p[p.length-1]).replace(/_/g,' ');
+  });
+
+  // Estimate videos/month from publishedAt
+  const created = new Date(snippet.publishedAt);
+  const monthsOld = Math.max(1, (Date.now() - created) / (1000*60*60*24*30));
+  const videoCount = parseInt(stats.videoCount)||0;
+  const vpm = videoCount / monthsOld;
+
+  const thumb = snippet.thumbnails?.medium?.url || snippet.thumbnails?.default?.url || '';
+  const subs = parseInt(stats.subscriberCount)||0;
+
+  return {
+    id: ch.id,
+    name: snippet.title || 'Unknown',
+    handle: snippet.customUrl || '',
+    description: snippet.description || '',
+    thumb,
+    subs,
+    views: parseInt(stats.viewCount)||0,
+    videos: videoCount,
+    vpm: parseFloat(vpm.toFixed(2)),
+    topics: topics.slice(0,4),
+    hiddenSubs: stats.hiddenSubscriberCount === true,
+    madeForKids: ch.status?.madeForKids || false,
+    publishedAt: snippet.publishedAt,
+    country: snippet.country || '',
+    monthsOld: Math.round(monthsOld),
+  };
+}
+
+function chunkArray(arr, size) {
+  const chunks = [];
+  for(let i=0; i<arr.length; i+=size) chunks.push(arr.slice(i,i+size));
+  return chunks;
+}
+
+// ── SUMMARY ──────────────────────────────────────────────────────────────────
+function updateSummary() {
+  const totalSubs = allChannels.reduce((s,c) => s+c.subs,0);
+  const totalViews = allChannels.reduce((s,c) => s+c.views,0);
+  const avgVpm = allChannels.reduce((s,c) => s+c.vpm,0) / Math.max(1,allChannels.length);
+  const active = allChannels.filter(c => c.vpm > 0).length;
+
+  document.getElementById('summary-bar').innerHTML = `
+    <div class="summary-card"><span class="summary-val" style="color:var(--accent)">${allChannels.length}</span><span class="summary-lbl">Subscriptions</span></div>
+    <div class="summary-card"><span class="summary-val" style="color:var(--blue)">${fmtNum(totalSubs)}</span><span class="summary-lbl">Total Subscribers</span></div>
+    <div class="summary-card"><span class="summary-val" style="color:var(--green)">${fmtNum(totalViews)}</span><span class="summary-lbl">Total Views</span></div>
+    <div class="summary-card"><span class="summary-val" style="color:var(--amber)">${avgVpm.toFixed(1)}</span><span class="summary-lbl">Avg Videos/Mo</span></div>
+    <div class="summary-card"><span class="summary-val" style="color:var(--accent2)">${active}</span><span class="summary-lbl">Active Channels</span></div>
+  `;
+}
+
+// ── TOPICS ───────────────────────────────────────────────────────────────────
+function buildTopicPills() {
+  const counts = {};
+  allChannels.forEach(c => c.topics.forEach(t => { counts[t] = (counts[t]||0)+1; }));
+  const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,20);
+  const container = document.getElementById('topic-pills');
+  container.innerHTML = '';
+  sorted.forEach(([topic, count]) => {
+    const btn = document.createElement('button');
+    btn.className = 'topic-pill';
+    btn.textContent = `${topic} (${count})`;
+    btn.onclick = () => toggleTopic(topic, btn);
+    container.appendChild(btn);
+  });
+}
+
+function toggleTopic(topic, btn) {
+  if (activeTags.has(topic)) { activeTags.delete(topic); btn.classList.remove('active'); }
+  else { activeTags.add(topic); btn.classList.add('active'); }
+  applyFilters();
+}
+
+// ── SLIDERS ──────────────────────────────────────────────────────────────────
+function updateSlider(sliderId, labelId, scaleFn) {
+  const v = parseInt(document.getElementById(sliderId).value);
+  const scaled = scaleFn(v);
+  document.getElementById(labelId).textContent =
+    sliderId === 'sub-filter' ? fmtNum(scaled) : scaled;
+}
+
+function updateSliders() {
+  updateSlider('sub-filter','sub-val',subSliderVal);
+  updateSlider('vpm-filter','vpm-val',vpmSliderVal);
+  updateSlider('vid-filter','vid-val',vidSliderVal);
+}
+
+// ── FILTERS ──────────────────────────────────────────────────────────────────
+function applyFilters() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const minSubs   = subSliderVal(parseInt(document.getElementById('sub-filter').value));
+  const minVpm    = vpmSliderVal(parseInt(document.getElementById('vpm-filter').value));
+  const minVids   = vidSliderVal(parseInt(document.getElementById('vid-filter').value));
+  const filterKids    = document.getElementById('filter-kids').checked;
+  const filterHideSubs= document.getElementById('filter-hide-subs').checked;
+  const filterActive  = document.getElementById('filter-active').checked;
+  const sortKey   = document.getElementById('sort-select').value;
+
+  filteredChannels = allChannels.filter(c => {
+    if (query && !c.name.toLowerCase().includes(query)) return false;
+    if (c.subs < minSubs && !c.hiddenSubs) return false;
+    if (c.vpm < minVpm) return false;
+    if (c.videos < minVids) return false;
+    if (filterKids && !c.madeForKids) return false;
+    if (filterHideSubs && !c.hiddenSubs) return false;
+    if (filterActive && c.vpm <= 0) return false;
+    if (activeTags.size > 0) {
+      const hasTag = [...activeTags].some(t => c.topics.includes(t));
+      if (!hasTag) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  filteredChannels.sort((a,b) => {
+    let av, bv;
+    switch(sortKey) {
+      case 'name': av = a.name.toLowerCase(); bv = b.name.toLowerCase(); break;
+      case 'subscribers': av = a.subs; bv = b.subs; break;
+      case 'views': av = a.views; bv = b.views; break;
+      case 'videos': av = a.videos; bv = b.videos; break;
+      case 'vpm': av = a.vpm; bv = b.vpm; break;
+      case 'lastUpload': av = a.publishedAt||''; bv = b.publishedAt||''; break;
+      default: av = a.name.toLowerCase(); bv = b.name.toLowerCase();
+    }
+    if (av < bv) return sortDir === 'asc' ? -1 : 1;
+    if (av > bv) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+
+  renderChannels();
+  document.getElementById('results-info').textContent =
+    `${filteredChannels.length} of ${allChannels.length} channels`;
+}
+
+function resetFilters() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('sub-filter').value = 0;
+  document.getElementById('vpm-filter').value = 0;
+  document.getElementById('vid-filter').value = 0;
+  document.getElementById('filter-kids').checked = false;
+  document.getElementById('filter-hide-subs').checked = false;
+  document.getElementById('filter-active').checked = false;
+  activeTags.clear();
+  document.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+  updateSliders();
+  applyFilters();
+}
+
+// ── RENDER ───────────────────────────────────────────────────────────────────
+function renderChannels() {
+  const grid = document.getElementById('channel-grid');
+  const empty = document.getElementById('empty-state');
+
+  if (filteredChannels.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'flex';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = filteredChannels.map((c, i) => channelCardHTML(c, i)).join('');
+}
+
+function channelCardHTML(c, i) {
+  const thumbEl = c.thumb
+    ? `<img class="channel-thumb" src="${c.thumb}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'channel-thumb placeholder\\'>${c.name[0].toUpperCase()}</div>'">`
+    : `<div class="channel-thumb placeholder">${c.name[0].toUpperCase()}</div>`;
+
+  const statusCls = c.hiddenSubs ? 'status-warn' : (c.madeForKids ? 'status-good' : 'status-good');
+  const statusTxt = c.madeForKids ? 'Kids' : (c.hiddenSubs ? 'Hidden subs' : 'Public');
+
+  const tags = c.topics.slice(0,2).map(t => `<span class="tag">${t}</span>`).join('');
+
+  const url = c.handle
+    ? `https://youtube.com/${c.handle}`
+    : `https://youtube.com/channel/${c.id}`;
+
+  const delay = Math.min(i * 30, 400);
+
+  return `
+  <div class="channel-card" style="animation-delay:${delay}ms">
+    <div class="card-header">
+      ${thumbEl}
+      <div class="channel-info">
+        <div class="channel-name" title="${escHtml(c.name)}">${escHtml(c.name)}</div>
+        <div class="channel-handle">${c.handle || c.id}</div>
+      </div>
+      <a class="channel-link" href="${url}" target="_blank" title="Open channel" rel="noopener">↗</a>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <span class="stat-value">${c.hiddenSubs ? '—' : fmtNum(c.subs)}</span>
+        <span class="stat-label">Subscribers</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value">${fmtNum(c.views)}</span>
+        <span class="stat-label">Total Views</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value">${fmtNum(c.videos)}</span>
+        <span class="stat-label">Videos</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value">${c.vpm.toFixed(1)}</span>
+        <span class="stat-label">/ Month</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value">${c.monthsOld > 12 ? Math.round(c.monthsOld/12)+'y' : c.monthsOld+'mo'}</span>
+        <span class="stat-label">Age</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-value">${c.country || '—'}</span>
+        <span class="stat-label">Country</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="tags">${tags}</div>
+      <span class="status-badge ${statusCls}">${statusTxt}</span>
+    </div>
+  </div>`;
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function fmtNum(n) {
+  if (n >= 1e9) return (n/1e9).toFixed(1)+'B';
+  if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+  return n.toString();
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function setLoading(on, msg = '') {
+  document.getElementById('loading-state').style.display = on ? 'flex' : 'none';
+  document.getElementById('channel-grid').style.display = on ? 'none' : 'grid';
+  if (msg) document.getElementById('loading-text').textContent = msg;
+}
+
+function setProgress(msg) {
+  document.getElementById('progress-text').textContent = msg;
+}
+
+function showError(msg) {
+  const t = document.getElementById('error-toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 5000);
+}
+
+function setDir(d) {
+  sortDir = d;
+  document.getElementById('dir-asc').classList.toggle('active', d==='asc');
+  document.getElementById('dir-desc').classList.toggle('active', d==='desc');
+  applyFilters();
+}
+
+function setView(v) {
+  currentView = v;
+  const grid = document.getElementById('channel-grid');
+  grid.classList.toggle('list-view', v==='list');
+  document.getElementById('vb-grid').classList.toggle('active', v==='grid');
+  document.getElementById('vb-list').classList.toggle('active', v==='list');
+}
+</script>
+</body>
+</html>
