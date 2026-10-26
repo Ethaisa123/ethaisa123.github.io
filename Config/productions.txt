@@ -2,6 +2,12 @@
 # When you add one then productions.js will automatically add it after saving
 # Format: Title, Company, Time, Thumbnail URL, Description 
 ---
+Patriam Saga of Roljar - 3D Character Animator
+Patriam Studios
+2026
+https://immich.ethanvanwijk.nz/api/assets/0fc4f4ff-b085-403a-8658-7b2c08dd5d17/original?key=4ij_F8ydHq_h3t_IhGNg2QQYgzV7WP25fZYop2Hp49HhKiYdEdSFuYDi6_hByJd7xH8&c=GQgSDQKXeI93OHhHh4eIiHeIcGYI&edited=true
+Im working as a character animatior on the indie game patriam Saga of Roljar, my tasks include the whole animation pipline from planning to sending to the game engine!
+---
 Corvus EX Machina - 3D Animator / 3D Environment Modeler
 Auckland University of Technology
 2025
